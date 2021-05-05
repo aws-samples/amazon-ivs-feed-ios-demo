@@ -12,7 +12,7 @@
       },
       "metadata": {
         "streamTitle": "My cool live stream",
-        "userAvatar": "https://assets.codepen.io/2960061/hedgehog.png",
+        "userAvatar": "https://d39ii5l128t5ul.cloudfront.net/feed-android-demo/hedgehog.png",
         "userName": "Harry Hedgehog",
         "userColors": {
           "primary": "#3E9963",
@@ -32,7 +32,7 @@
       },
       "metadata": {
         "streamTitle": "Welcome to my cool stream",
-        "userAvatar": "https://assets.codepen.io/2960061/giraffe.png",
+        "userAvatar": "https://d39ii5l128t5ul.cloudfront.net/feed-android-demo/giraffe.png",
         "userName": "Gene Giraffe",
         "userColors": {
           "primary": "#545B60",
@@ -52,7 +52,7 @@
       },
       "metadata": {
         "streamTitle": "What a hoot!",
-        "userAvatar": "https://assets.codepen.io/2960061/bird2.png",
+        "userAvatar": "https://d39ii5l128t5ul.cloudfront.net/feed-android-demo/bird2.png",
         "userName": "Owen Owl",
         "userColors": {
           "primary": "#FFB660",

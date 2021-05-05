@@ -65,7 +65,12 @@ public class HeartView: UIView {
     }
 
     private func performBloomAnimation() {
-        UIView.animate(withDuration: appearAnimationDuration, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: [UIView.AnimationOptions.curveEaseOut], animations: {
+        UIView.animate(withDuration: appearAnimationDuration,
+                       delay: 0,
+                       usingSpringWithDamping: 0.6,
+                       initialSpringVelocity: 0.8,
+                       options: [UIView.AnimationOptions.curveEaseOut],
+                       animations: {
             self.transform = CGAffineTransform.identity
             self.alpha = 0.9
         })
@@ -105,7 +110,7 @@ public class HeartView: UIView {
 
     private func travelPath(inView view: UIView) -> UIBezierPath? {
         // Pick -1 or 1
-        let rawDirection = CGFloat(1 - (2 * Int.random(in: 0...2)))
+        let rawDirection = CGFloat(1 - (2 * Int.random(in: 0...1)))
         guard let endPointDirection = RotationDirection(rawValue: rawDirection) else {
             return nil
         }

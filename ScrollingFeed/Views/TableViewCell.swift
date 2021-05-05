@@ -76,8 +76,15 @@ class TableViewCell: UITableViewCell {
     }
 
     private func addApplicationLifecycleObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidEnterBackground(notification:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground(notification:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationDidEnterBackground(notification:)),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector:
+                                                #selector(applicationWillEnterForeground(notification:)),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
     }
 
     private func removeApplicationLifecycleObservers() {
@@ -112,13 +119,14 @@ class TableViewCell: UITableViewCell {
             }
         }
 
-        if (gradient == nil) {
+        if gradient == nil {
             gradient = CAGradientLayer()
             gradient?.colors = [
                 UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
                 UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor
             ]
-            gradient?.frame = detailsView.bounds
+            let gradientSize = CGSize(width: UIScreen.main.bounds.width, height: detailsView.bounds.height)
+            gradient?.frame = CGRect(origin: detailsView.bounds.origin, size: gradientSize)
             detailsView.layer.insertSublayer(gradient!, at: 0)
         }
 
@@ -141,7 +149,7 @@ class TableViewCell: UITableViewCell {
     }
 
     private func getImageFrom(_ url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
             guard let data = data, error == nil else {
                 print("Error getting image from \(url.absoluteString): \(error!)")
                 DispatchQueue.main.async { completion(nil) }
