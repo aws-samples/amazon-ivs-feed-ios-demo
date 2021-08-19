@@ -25,7 +25,7 @@
       "stream": {
         "channelArn": "arn:aws:ivs:us-west-2:XXXXXXXXXXXX:channel/XXXXXXXXXXXX",
         "health": "HEALTHY",
-        "playbackUrl": "https://4c62a87c1810.us-west-2.playback.live-video.net/api/video/v1/us-west-2.049054135175.channel.iNMK0w9JnUkC.m3u8",
+        "playbackUrl": "https://4da4a22026d3.us-west-2.playback.live-video.net/api/video/v1/us-west-2.298083573632.channel.WbhDQYgfYHoT.m3u8",
         "startTime": "2020-06-17T22:10:51Z",
         "state": "LIVE",
         "viewerCount": 1
@@ -45,13 +45,13 @@
       "stream": {
         "channelArn": "arn:aws:ivs:us-west-2:XXXXXXXXXXXX:channel/XXXXXXXXXXXX",
         "health": "HEALTHY",
-        "playbackUrl": "https://4c62a87c1810.us-west-2.playback.live-video.net/api/video/v1/us-west-2.049054135175.channel.QidZjoGOhfDp.m3u8",
+        "playbackUrl": "https://4c62a87c1810.us-west-2.playback.live-video.net/api/video/v1/us-west-2.049054135175.channel.LaSuL3bHBRR7.m3u8",
         "startTime": "2020-06-17T22:05:13Z",
         "state": "LIVE",
         "viewerCount": 1
       },
       "metadata": {
-        "streamTitle": "What a hoot!",
+        "streamTitle": "Planting trees",
         "userAvatar": "https://d39ii5l128t5ul.cloudfront.net/feed-android-demo/bird2.png",
         "userName": "Owen Owl",
         "userColors": {
