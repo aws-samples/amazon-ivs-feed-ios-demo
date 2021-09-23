@@ -1,23 +1,22 @@
 //
-//  TableViewCell.swift
-//  ScrollingFeed
+//  StreamViewController.swift
+//  StreamViewController
 //
-//  Created by Zingis, Uldis on 6/30/20.
-//  Copyright © 2020 Twitch. All rights reserved.
-//
+//  Created by Uldis Zingis on 23/09/2021.
+//  Copyright © 2021 Twitch. All rights reserved.
 
 import UIKit
 import AmazonIVSPlayer
 import SpriteKit
 
-protocol StreamCellDelegate {
+protocol StreamDelegate {
     func presentError(_ error: Error, componentName: String)
     func presentAlert(_ message: String, componentName: String)
     func didTapShare(_ items: [Any])
 }
 
-class TableViewCell: UITableViewCell {
-    
+class StreamViewController: UIViewController {
+
     private let dateFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
@@ -27,9 +26,7 @@ class TableViewCell: UITableViewCell {
     // MARK: IBOutlet
 
     @IBOutlet private var playerView: IVSPlayerView!
-    @IBOutlet private var cellContentView: UIView!
     @IBOutlet private var bufferView: UIView!
-    @IBOutlet private var bufferAvatarImageView: UIImageView!
     @IBOutlet private var bufferSpinnerView: LoadingIndicatorView!
     @IBOutlet private var muteButton: UIButton!
     @IBOutlet private var detailsView: UIView!
@@ -39,7 +36,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet private var onlineTimerLabel: UILabel!
     @IBOutlet private var shareButton: UIButton!
     @IBOutlet private var likeButton: UIButton!
-    @IBOutlet private var pauseOverlay: UIView!
+    @IBOutlet private var topGradientView: UIView!
 
     // MARK: IBAction
 
@@ -61,6 +58,10 @@ class TableViewCell: UITableViewCell {
         if let streamUrl = streamUrl {
             delegate?.didTapShare([streamUrl])
         }
+    }
+
+    @objc private func didTapPlayerView() {
+        player?.state == .playing ? player?.pause() : player?.play()
     }
 
     // MARK: Application Lifecycle
@@ -92,50 +93,50 @@ class TableViewCell: UITableViewCell {
         NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
-    // MARK: Cell setup
+    // MARK: View setup
 
-    private var delegate: StreamCellDelegate?
+    private var delegate: StreamDelegate?
+    private(set) var stream: Stream?
     private var streamUrl: URL?
-    private var gradient: CAGradientLayer?
+    private var gradientTop: CAGradientLayer?
+    private var gradientBottom: CAGradientLayer?
 
-    func setup(with stream: Stream, delegate: StreamCellDelegate) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setup()
+        startPlayback()
+    }
+
+    func setup(_ stream: Stream, delegate: StreamDelegate) {
         self.delegate = delegate
-        cellContentView.backgroundColor = UIColor(hex: stream.metadata.userColors.primary)
+        self.stream = stream
+    }
+
+    private func setup() {
+        guard let stream = stream else { return }
         titleLabel.text = stream.metadata.streamTitle
         usernameLabel.text = stream.metadata.userName
-        onlineTimerLabel.text = " for \(durationString(since: stream.streamInfo.startTime))"
-
-        bufferSpinnerView.endColor = UIColor(hex: stream.metadata.userColors.secondary)
+        onlineTimerLabel.text = "Started \(durationString(since: stream.streamInfo.startTime)) ago"
+        bufferSpinnerView.endColor = UIColor.white
+        toggleMuteStatus(false)
         rotateLoadingView()
-
-        muteButton.layer.shadowColor = UIColor.black.cgColor
-        muteButton.layer.shadowOpacity = 0.25
-        muteButton.layer.shadowOffset = CGSize(width: 0, height: 4)
 
         if let avatarUrl = URL(string: stream.metadata.userAvatarUrl) {
             getImageFrom(avatarUrl) { [weak self] (avatarImage) in
-                self?.bufferAvatarImageView.image = avatarImage
                 self?.avatarImageView.image = avatarImage
+                self?.avatarImageView.layer.cornerRadius = (self?.avatarImageView.frame.size.width ?? 1) / 2
             }
         }
 
-        if gradient == nil {
-            gradient = CAGradientLayer()
-            gradient?.colors = [
-                UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor,
-                UIColor(red: 0, green: 0, blue: 0, alpha: 0.8).cgColor
-            ]
-            let gradientSize = CGSize(width: UIScreen.main.bounds.width, height: detailsView.bounds.height)
-            gradient?.frame = CGRect(origin: detailsView.bounds.origin, size: gradientSize)
-            detailsView.layer.insertSublayer(gradient!, at: 0)
-        }
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
 
-        streamUrl = URL(string: stream.streamInfo.playbackUrl)
+        playerView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapPlayerView)))
 
-        if let streamUrl = streamUrl {
-            loadStream(from: streamUrl)
-            pausePlayback()
-        }
+        gradientTop == nil ? gradientTop = appendGradient(to: topGradientView, startAlpha: 0.6, endAlpha: 0) : ()
+        gradientBottom == nil ? gradientBottom = appendGradient(to: detailsView, startAlpha: 0, endAlpha: 0.6) : ()
+
+        loadStream()
     }
 
     private func durationString(since: String) -> String {
@@ -164,6 +165,18 @@ class TableViewCell: UITableViewCell {
         }).resume()
     }
 
+    private func appendGradient(to view: UIView, startAlpha: CGFloat, endAlpha: CGFloat) -> CAGradientLayer {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            UIColor(red: 0, green: 0, blue: 0, alpha: startAlpha).cgColor,
+            UIColor(red: 0, green: 0, blue: 0, alpha: endAlpha).cgColor
+        ]
+        gradientLayer.frame = CGRect(origin: view.bounds.origin,
+                                     size: CGSize(width: UIScreen.main.bounds.width, height: view.bounds.height))
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        return gradientLayer
+    }
+
     // MARK: - Player
 
     private var player: IVSPlayer? {
@@ -180,7 +193,8 @@ class TableViewCell: UITableViewCell {
 
     // MARK: Playback Control
 
-    private func loadStream(from streamURL: URL) {
+    func loadStream() {
+        guard let stream = stream else { return }
         let player: IVSPlayer
         if let existingPlayer = self.player {
             player = existingPlayer
@@ -190,20 +204,23 @@ class TableViewCell: UITableViewCell {
             self.player = player
             print("ℹ️ Player initialized: version \(player.version)")
         }
-        player.load(streamURL)
-        toggleMuteStatus(true)
+
+        let streamUrl = URL(string: stream.streamInfo.playbackUrl)
+        if let streamUrl = streamUrl, self.streamUrl == nil {
+            player.load(streamUrl)
+            self.streamUrl = streamUrl
+        }
+
+        player.muted = true
+        pausePlayback()
     }
 
     func startPlayback() {
         player?.play()
-        pauseOverlay.isHidden = true
-        toggleInfoAndButtons(true)
     }
 
     func pausePlayback() {
         player?.pause()
-        pauseOverlay.isHidden = false
-        toggleInfoAndButtons(false)
     }
 
     // MARK: State
@@ -216,12 +233,8 @@ class TableViewCell: UITableViewCell {
         }
     }
 
-    private func toggleInfoAndButtons(_ show: Bool) {
-        detailsView.isHidden = !show
-        muteButton.isHidden = !show
-    }
-
     private func rotateLoadingView() {
+        bufferSpinnerView.layer.removeAllAnimations()
         UIView.animate(withDuration: 1, delay: 0, options: [.curveLinear], animations: {
             self.bufferSpinnerView.transform = self.bufferSpinnerView.transform.rotated(by: .pi / 2)
         }) { (finished) -> Void in
@@ -232,15 +245,22 @@ class TableViewCell: UITableViewCell {
     private func toggleMuteStatus(_ newStatus: Bool) {
         if let player = player {
             player.muted = newStatus
-            muteButton.setImage(newStatus ? UIImage(named: "sound-off") : UIImage(named: "sound-on"), for: .normal)
+            if #available(iOS 13.0, *) {
+                muteButton.setImage(
+                    newStatus ? UIImage(systemName: "speaker.slash.circle.fill") : UIImage(systemName: "speaker.wave.2.circle.fill"),
+                    for: .normal)
+            } else {
+                muteButton.setImage(
+                    newStatus ? UIImage(named: "sound-off") : UIImage(named: "sound-on"),
+                    for: .normal)
+            }
         }
     }
 }
 
 // MARK: - IVSPlayer.Delegate
 
-extension TableViewCell: IVSPlayer.Delegate {
-
+extension StreamViewController: IVSPlayer.Delegate {
     func player(_ player: IVSPlayer, didChangeState state: IVSPlayer.State) {
         updateForState(state)
     }

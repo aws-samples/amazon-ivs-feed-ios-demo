@@ -37,7 +37,7 @@ class LoadingIndicatorView: UIView {
         gradientLayer.frame = bounds
         gradientLayer.colors = [.clear, endColor].map { $0.cgColor }
 
-        let lineWidth: CGFloat = 6
+        let lineWidth: CGFloat = 4
         let center = CGPoint(x: bounds.midX, y: bounds.midY)
         let radius = (bounds.height - lineWidth) / 2
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: 2 * .pi, clockwise: true)
