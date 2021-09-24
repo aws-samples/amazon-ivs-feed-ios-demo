@@ -226,10 +226,9 @@ class StreamViewController: UIViewController {
     // MARK: State
 
     private func updateForState(_ state: IVSPlayer.State) {
-        if state == .buffering {
-            bufferView.isHidden = false
-        } else {
-            bufferView.isHidden = true
+        bufferView.isHidden = state != .buffering
+        if state == .playing {
+            playerView.backgroundColor = UIColor.black
         }
     }
 
