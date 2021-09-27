@@ -55,8 +55,8 @@ class StreamViewController: UIViewController {
     }
 
     @IBAction private func didTapShare(_ sender: Any) {
-        if let streamUrl = streamUrl {
-            delegate?.didTapShare([streamUrl])
+        if let streamUrl = streamUrl, let watchUrl = URL(string: "https://ivs.rocks/live#\(streamUrl.absoluteString)") {
+            delegate?.didTapShare([watchUrl])
         }
     }
 
@@ -105,6 +105,11 @@ class StreamViewController: UIViewController {
         super.viewWillAppear(animated)
         setup()
         startPlayback()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        toggleMuteStatus(player?.muted ?? true)
     }
 
     func setup(_ stream: Stream, delegate: StreamDelegate) {

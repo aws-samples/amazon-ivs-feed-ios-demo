@@ -104,7 +104,7 @@ extension StreamsViewController: StreamDelegate {
         DispatchQueue.main.async {
             let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
             activityController.popoverPresentationController?.sourceView = self.view
-            self.present(activityController, animated: true, completion: nil)
+            self.present(activityController, animated: true)
         }
     }
 }
