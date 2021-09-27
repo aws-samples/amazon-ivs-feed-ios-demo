@@ -52,29 +52,16 @@ struct Metadata: Decodable {
     var streamTitle: String
     var userAvatarUrl: String
     var userName: String
-    var userColors: UserColors
 
-    init(streamTitle: String, userAvatarUrl: String, userName: String, userColors: UserColors) {
+    init(streamTitle: String, userAvatarUrl: String, userName: String) {
         self.streamTitle = streamTitle
         self.userAvatarUrl = userAvatarUrl
         self.userName = userName
-        self.userColors = userColors
     }
 
     enum CodingKeys: String, CodingKey {
         case streamTitle
         case userAvatarUrl = "userAvatar"
         case userName
-        case userColors
-    }
-}
-
-struct UserColors: Decodable {
-    var primary: String
-    var secondary: String
-
-    init(primary: String, secondary: String) {
-        self.primary = primary
-        self.secondary = secondary
     }
 }

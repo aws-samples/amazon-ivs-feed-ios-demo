@@ -8,21 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		3C3CD0142EB39E09EC1432E4 /* libPods-ScrollingFeed.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B925C4A64D097C63255F830 /* libPods-ScrollingFeed.a */; };
-		46163B6024AB6020005714E4 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46163B5F24AB6020005714E4 /* TableViewCell.swift */; };
 		46163B6224AB62A0005714E4 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46163B6124AB62A0005714E4 /* Stream.swift */; };
 		463DB68724AF2FCA0003F4B6 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463DB68624AF2FCA0003F4B6 /* UIColor.swift */; };
 		46E58E0824B7416F00B0B8EA /* HeartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E58E0724B7416F00B0B8EA /* HeartView.swift */; };
 		46E58E0B24B8531600B0B8EA /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E58E0A24B8531600B0B8EA /* LoadingIndicatorView.swift */; };
 		46E58E0D24BD9BB500B0B8EA /* feed.json in Resources */ = {isa = PBXBuildFile; fileRef = 46E58E0C24BD9BB500B0B8EA /* feed.json */; };
 		46F5ABA724AB50AE00E59FC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5ABA624AB50AE00E59FC5 /* AppDelegate.swift */; };
-		46F5ABAB24AB50AE00E59FC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F5ABAA24AB50AE00E59FC5 /* ViewController.swift */; };
 		46F5ABAE24AB50AE00E59FC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F5ABAC24AB50AE00E59FC5 /* Main.storyboard */; };
 		46F5ABB024AB50AF00E59FC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46F5ABAF24AB50AF00E59FC5 /* Assets.xcassets */; };
 		46F5ABB324AB50AF00E59FC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F5ABB124AB50AF00E59FC5 /* LaunchScreen.storyboard */; };
+		5C7D19A426F9BC6800031628 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C7D19A226F9BC6700031628 /* SF-Pro-Text-Medium.otf */; };
+		5C7D19A526F9BC6800031628 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C7D19A326F9BC6800031628 /* SF-Pro-Text-Regular.otf */; };
+		5C859E7826FC6985006ACF32 /* StreamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C859E7726FC6985006ACF32 /* StreamsViewController.swift */; };
+		5C859E7A26FC6AB7006ACF32 /* StreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C859E7926FC6AB7006ACF32 /* StreamViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		46163B5F24AB6020005714E4 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		46163B6124AB62A0005714E4 /* Stream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stream.swift; sourceTree = "<group>"; };
 		463DB68624AF2FCA0003F4B6 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		46E58E0724B7416F00B0B8EA /* HeartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartView.swift; sourceTree = "<group>"; };
@@ -30,13 +31,16 @@
 		46E58E0C24BD9BB500B0B8EA /* feed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = feed.json; sourceTree = "<group>"; };
 		46F5ABA324AB50AE00E59FC5 /* ScrollingFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollingFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F5ABA624AB50AE00E59FC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		46F5ABAA24AB50AE00E59FC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		46F5ABAD24AB50AE00E59FC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46F5ABAF24AB50AF00E59FC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46F5ABB224AB50AF00E59FC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46F5ABB424AB50AF00E59FC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5297FA3CF9B13704BBAA060D /* Pods-ScrollingFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollingFeed.debug.xcconfig"; path = "../amazon-ivs-feed-ios-demo/Pods/Target Support Files/Pods-ScrollingFeed/Pods-ScrollingFeed.debug.xcconfig"; sourceTree = "<group>"; };
 		531727D05DA1A1DCB49AC8E4 /* Pods-ScrollingFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrollingFeed.release.xcconfig"; path = "../amazon-ivs-feed-ios-demo/Pods/Target Support Files/Pods-ScrollingFeed/Pods-ScrollingFeed.release.xcconfig"; sourceTree = "<group>"; };
+		5C7D19A226F9BC6700031628 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		5C7D19A326F9BC6800031628 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		5C859E7726FC6985006ACF32 /* StreamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamsViewController.swift; sourceTree = "<group>"; };
+		5C859E7926FC6AB7006ACF32 /* StreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamViewController.swift; sourceTree = "<group>"; };
 		6B925C4A64D097C63255F830 /* libPods-ScrollingFeed.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrollingFeed.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0466003D0BA4E62C635FC5 /* Pods-IVSClients-ScrollingFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVSClients-ScrollingFeed.debug.xcconfig"; path = "Target Support Files/Pods-IVSClients-ScrollingFeed/Pods-IVSClients-ScrollingFeed.debug.xcconfig"; sourceTree = "<group>"; };
 		B8FC476793CFB293EE9795A6 /* Pods-IVSClients-ScrollingFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVSClients-ScrollingFeed.release.xcconfig"; path = "Target Support Files/Pods-IVSClients-ScrollingFeed/Pods-IVSClients-ScrollingFeed.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,7 +69,8 @@
 		46163B6424AB6527005714E4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				46F5ABAA24AB50AE00E59FC5 /* ViewController.swift */,
+				5C859E7726FC6985006ACF32 /* StreamsViewController.swift */,
+				5C859E7926FC6AB7006ACF32 /* StreamViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -73,7 +78,6 @@
 		46163B6524AB6548005714E4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				46163B5F24AB6020005714E4 /* TableViewCell.swift */,
 				46E58E0724B7416F00B0B8EA /* HeartView.swift */,
 				46E58E0A24B8531600B0B8EA /* LoadingIndicatorView.swift */,
 			);
@@ -119,6 +123,7 @@
 				46E58E0924B75A6A00B0B8EA /* Helpers */,
 				46F5ABB424AB50AF00E59FC5 /* Info.plist */,
 				46E58E0C24BD9BB500B0B8EA /* feed.json */,
+				5C7D19A126F9BC5600031628 /* Fonts */,
 			);
 			path = ScrollingFeed;
 			sourceTree = "<group>";
@@ -133,6 +138,15 @@
 			);
 			name = Pods;
 			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		5C7D19A126F9BC5600031628 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5C7D19A226F9BC6700031628 /* SF-Pro-Text-Medium.otf */,
+				5C7D19A326F9BC6800031628 /* SF-Pro-Text-Regular.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CE230492CA95D44449C55AEA /* Frameworks */ = {
@@ -204,9 +218,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C7D19A526F9BC6800031628 /* SF-Pro-Text-Regular.otf in Resources */,
 				46F5ABB324AB50AF00E59FC5 /* LaunchScreen.storyboard in Resources */,
 				46E58E0D24BD9BB500B0B8EA /* feed.json in Resources */,
 				46F5ABB024AB50AF00E59FC5 /* Assets.xcassets in Resources */,
+				5C7D19A426F9BC6800031628 /* SF-Pro-Text-Medium.otf in Resources */,
 				46F5ABAE24AB50AE00E59FC5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,10 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46163B6024AB6020005714E4 /* TableViewCell.swift in Sources */,
 				46E58E0824B7416F00B0B8EA /* HeartView.swift in Sources */,
-				46F5ABAB24AB50AE00E59FC5 /* ViewController.swift in Sources */,
 				46F5ABA724AB50AE00E59FC5 /* AppDelegate.swift in Sources */,
+				5C859E7826FC6985006ACF32 /* StreamsViewController.swift in Sources */,
+				5C859E7A26FC6AB7006ACF32 /* StreamViewController.swift in Sources */,
 				46E58E0B24B8531600B0B8EA /* LoadingIndicatorView.swift in Sources */,
 				46163B6224AB62A0005714E4 /* Stream.swift in Sources */,
 				463DB68724AF2FCA0003F4B6 /* UIColor.swift in Sources */,
@@ -429,6 +445,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ScrollingFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -447,6 +464,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ScrollingFeed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
